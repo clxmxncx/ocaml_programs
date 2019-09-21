@@ -24,12 +24,11 @@ d’une minute."
 
 open Unix
 
-let time f x y z =
-  let start = (times ()).tms_utime in
-  let res = f x y z in
-  let stop = (times ()).tms_utime in
-  let () = Printf.printf "execution time: %f\n" (stop -. start) in
-  res
+let time f =
+  let t = Unix.gettimeofday () in
+  let res = f () in
+  let exec_time = Unix.gettimeofday () -. t in
+  (res, exec_time)
 
 
 module S = Set.Make(struct type t = int let compare = compare end)
@@ -56,5 +55,5 @@ let rec count cols d1 d2 =
 
 let () =
   let n = int_of_string Sys.argv.(1) in
-  let res = time count (upto (n - 1)) S.empty S.empty in
+  let (res, exec_time) = time (fun () -> count (upto (n - 1)) S.empty S.empty) in
   Format.printf "%d@." res
