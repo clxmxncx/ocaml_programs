@@ -1,6 +1,11 @@
 (*PROBLEME 1 PAGE 146*)
 (*Livre Option Informatique MPSI/ MP-MP* N.Carré, R. Mansuy*)
 
+
+(*EXECUTION DU PROGRAMME :                                                *)
+(* -> ocamlc -o enveloppe_convexe.native graphics.cma enveloppe_convexe.ml*)
+(* -> ./enveloppe_convexe.native                                         *)
+
 type point = int * int and nuage = point array
 
 (* question 2 *)
